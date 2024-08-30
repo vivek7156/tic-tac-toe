@@ -9,8 +9,11 @@
 <body>
     <h1>Tic-Tac-Toe</h1>
     <div class="alert hide">
-        <p id="msg"></p>
         <button class="New">New Game</button>
+        <p id="msg"></p>
+    </div>
+    <div class="scoreboard-left">
+        <p>X Wins: <span id="xWins">0</span></p>
     </div>
     <div class="container">
         <div class="game">
@@ -25,7 +28,10 @@
             <button class="box"></button>
         </div>
     </div>
-    <button class="reset"></button>
+    <div class="scoreboard-right">
+        <p>O Wins: <span id="oWins">0</span></p>
+    </div>
+    <button class="reset">Reset</button>
     <script src="app.js"></script>
 </body>
 </html>
