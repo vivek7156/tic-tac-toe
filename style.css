@@ -1,18 +1,32 @@
-*{
+/* General reset */
+* {
     margin: 0;
     padding: 0;
 }
+
 body {
     background-color: #548687;
     text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    position: relative;
 }
+
+h1 {
+    margin-bottom: 20px;
+    color: rgb(0, 0, 0);
+}
+
 .container {
-    height: 50vw;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.game{
+
+.game {
     height: 60vmin;
     width: 60vmin;
     display: flex;
@@ -21,6 +35,7 @@ body {
     align-items: center;
     gap: 1.8vmin;
 }
+
 .box {
     background-color: aliceblue;
     height: 18vmin;
@@ -29,10 +44,16 @@ body {
     border: none;
     box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
     font-size: 9vmin;
-    color: #b0413e;
 }
-.reset {
+
+.box.x {
+    color: blue; /* Blue color for X */
 }
+
+.box.o {
+    color: red; /* Red color for O */
+}
+
 .New {
     padding: 1rem;
     font-size: 1.25rem;
@@ -41,18 +62,60 @@ body {
     border-radius: 1rem;
     border: none;
 }
-#msg{
+
+#msg {
     color: #ffffc7;
     font-size: 5vmin;
 }
+
 .hide {
     display: none;
 }
-.alert{
-    height: 100vmin;
+
+.alert {
+    height: 40vmin;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     gap: 4rem;
+}
+
+.scoreboard-left, .scoreboard-right {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2rem;
+    color: #000000;
+}
+
+.scoreboard-left {
+    left: 20px;
+}
+
+.scoreboard-right {
+    right: 20px;
+}
+
+.scoreboard-left p span {
+    color: blue; /* Blue color for X count */
+}
+
+.scoreboard-right p span {
+    color: red; /* Red color for O count */
+}
+
+.reset {
+    padding: 1rem;
+    font-size: 1.25rem;
+    background-color: #0b585f;
+    color: #fff;
+    border-radius: 1rem;
+    border: none;
+    margin-top: 20px;
+}
+
+.winning-box {
+    background-color: #ffeb3b;
+    color: #000;
 }
