@@ -2,6 +2,7 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 body {
@@ -11,12 +12,12 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: 100vh;
-    position: relative;
+    min-height: 100vh;
+    padding: 20px;
 }
 
 h1 {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     color: rgb(0, 0, 0);
 }
 
@@ -66,35 +67,41 @@ h1 {
 #msg {
     color: #ffffc7;
     font-size: 5vmin;
+    padding-bottom: 5px;
 }
 
 .hide {
     display: none;
 }
 
+.scores {
+    display: flex;
+    justify-content: space-between;
+    width: 70%;
+    margin-bottom: 25px;
+    position: relative;
+}
+
 .alert {
-    height: 40vmin;
+    height: 12vmin;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    gap: 4rem;
+    gap: 0.5rem;
 }
 
 .scoreboard-left, .scoreboard-right {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
     font-size: 2rem;
     color: #000000;
 }
 
 .scoreboard-left {
-    left: 20px;
+    text-align: left;
 }
 
 .scoreboard-right {
-    right: 20px;
+    text-align: right;
 }
 
 .scoreboard-left p span {
@@ -112,10 +119,39 @@ h1 {
     color: #fff;
     border-radius: 1rem;
     border: none;
-    margin-top: 20px;
+    margin-top: 7px;
 }
 
 .winning-box {
     background-color: #ffeb3b;
     color: #000;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    
+    h1 {
+        margin-bottom: 60px;
+        color: rgb(0, 0, 0);
+    }
+
+    .game {
+        height: 80vmin;
+        width: 80vmin;
+    }
+
+    .box {  
+        height: 24vmin;
+        width: 24vmin;
+        font-size: 12vmin;
+    }
+    .scoreboard-left, .scoreboard-right {
+        font-size: 1.3rem;
+        color: #000000;
+    }
+    #msg {
+        color: #ffffc7;
+        font-size: 5vmin;
+        padding-bottom: 45px;
+    }
 }

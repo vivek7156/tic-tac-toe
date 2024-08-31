@@ -12,8 +12,13 @@
         <button class="New">New Game</button>
         <p id="msg"></p>
     </div>
-    <div class="scoreboard-left">
-        <p>X Wins: <span id="xWins">0</span></p>
+    <div class="scores">
+        <div class="scoreboard-left">
+            <p>X Wins: <span id="x-score">0</span></p>
+        </div>
+        <div class="scoreboard-right">
+            <p>O Wins: <span id="o-score">0</span></p>
+        </div>
     </div>
     <div class="container">
         <div class="game">
@@ -28,10 +33,7 @@
             <button class="box"></button>
         </div>
     </div>
-    <div class="scoreboard-right">
-        <p>O Wins: <span id="oWins">0</span></p>
-    </div>
-    <button class="reset">Reset</button>
+    <button class="reset">Reset Scores</button>
     <script src="app.js"></script>
 </body>
 </html>
