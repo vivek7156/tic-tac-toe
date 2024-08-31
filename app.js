@@ -7,13 +7,33 @@ let msg = document.querySelector("#msg");
 let turnO = true;
 let count = 0;
 
-// Initialize scores from localStorage or default to 0
-let xWins = localStorage.getItem('xWins') ? parseInt(localStorage.getItem('xWins')) : 0;
-let oWins = localStorage.getItem('oWins') ? parseInt(localStorage.getItem('oWins')) : 0;
+// Initialize scores from localStorage, defaulting to 0 if not set
+let xWins = parseInt(localStorage.getItem("xWins")) || 0;
+let oWins = parseInt(localStorage.getItem("oWins")) || 0;
 
-document.getElementById("xWins").innerText = xWins;
-document.getElementById("oWins").innerText = oWins;
+// Select the score elements
+const xScoreElement = document.querySelector("#x-score");
+const oScoreElement = document.querySelector("#o-score");
 
+// Display the scores in the UI
+xScoreElement.innerText = xWins;
+oScoreElement.innerText = oWins;
+
+// Function to reset scores
+const resetScores = () => {
+    xWins = 0;
+    oWins = 0;
+    localStorage.setItem("xWins", xWins);
+    localStorage.setItem("oWins", oWins);
+    xScoreElement.innerText = xWins;  // Set text to the score value
+    oScoreElement.innerText = oWins;  // Set text to the score value
+    resetGame(); // Reset the game board
+};
+
+// Event listener for resetting the scores
+resetBtn.addEventListener("click", resetScores);
+
+// Winning patterns
 const winPatterns = [
     [0, 1, 2],
     [0, 3, 6],
@@ -25,6 +45,7 @@ const winPatterns = [
     [6, 7, 8],
 ];
 
+// Reset the game board
 const resetGame = () => {
     turnO = true;
     count = 0;
@@ -40,6 +61,7 @@ const resetGame = () => {
     newGameBtn.disabled = false;
 };
 
+// Convert NodeList to Array for easier manipulation
 const boxesArray = Array.from(boxes);
 
 boxesArray.forEach((box, index) => {
@@ -66,33 +88,37 @@ boxesArray.forEach((box, index) => {
     });
 });
 
+// Handle game draw
 const gameDraw = () => {
     msg.innerText = "Game was a Draw";
     alertBox.classList.remove("hide");
     disableBoxes();
 };
 
+// Disable all boxes (used when game ends)
 const disableBoxes = () => {
     boxesArray.forEach((box) => {
         box.disabled = true;
     });
 };
 
+// Enable all boxes (used when resetting the game)
 const enableBoxes = () => {
     boxesArray.forEach((box) => {
         box.disabled = false;
     });
 };
 
+// Show the winner and highlight the winning pattern
 const showWinner = (winner, pattern) => {
     if (winner === "X") {
         xWins++;
         localStorage.setItem('xWins', xWins);  // Store X wins in localStorage
-        document.getElementById("xWins").innerText = xWins;
+        xScoreElement.innerText = xWins;
     } else if (winner === "O") {
         oWins++;
         localStorage.setItem('oWins', oWins);  // Store O wins in localStorage
-        document.getElementById("oWins").innerText = oWins;
+        oScoreElement.innerText = oWins;
     }
     
     msg.innerText = `Congratulations, Winner is ${winner}`;
@@ -105,6 +131,7 @@ const showWinner = (winner, pattern) => {
     disableBoxes();
 };
 
+// Check if there's a winner
 const checkWinner = () => {
     for (let pattern of winPatterns) {
         let pos1Val = boxesArray[pattern[0]].innerText;
@@ -121,5 +148,6 @@ const checkWinner = () => {
     return false;
 };
 
+// Event listeners for resetting and starting a new game
 resetBtn.addEventListener("click", resetGame);
 newGameBtn.addEventListener("click", resetGame);
